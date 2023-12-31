@@ -1,8 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import * as esbuild from 'esbuild-wasm' 
 
 function App() {
   const [input, setInput] = useState(''); // To trake the code write into the text area
   const [code, setCode] = useState(''); // To store tranpited code
+
+  const startService = async () => {
+    await esbuild.initialize({wasmURL: '/esbuild.wasm'});
+  }
+
+  useEffect(()=> {
+    startService();
+  }, [])
   
   const onClick = async () => {
       // Transpile the code using esbuild
