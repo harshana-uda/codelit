@@ -6,7 +6,11 @@ function App() {
   const [code, setCode] = useState(''); // To store tranpited code
 
   const startService = async () => {
-    await esbuild.initialize({wasmURL: '/esbuild.wasm'});
+    try {
+      await esbuild.initialize({wasmURL: '/esbuild.wasm'})
+    }
+    catch {
+    }
   }
 
   useEffect(()=> {
